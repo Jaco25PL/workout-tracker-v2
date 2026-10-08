@@ -7,7 +7,7 @@ Logging a workout on a phone is slow and fiddly. Most apps hide the one thing yo
 
 ## Target user
 A lifter who runs their own routine (3–5 gym days a week) and wants to log fast and see progress.
-User #1 is the author. No trainers or coaches (see ADR-0001).
+Multi-user from day one: anyone can sign up and has their own private data. All users have the same role, with no trainers or coaches (see ADR-0001). User #1 is the author.
 
 ## v1 features
 1. **Auth.** Sign up / log in with email. Google login only if the chosen stack makes it cheap.
