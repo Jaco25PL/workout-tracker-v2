@@ -1,6 +1,6 @@
 # v1 Scope
 
-Status: Accepted · 2026-10-08
+Status: Accepted · 2026-10-08 · updated 2026-10-11 after the domain model
 
 ## Problem
 Logging a workout on a phone is slow and fiddly. Most apps hide the one thing you need mid-set: what did I do last time?
@@ -12,11 +12,11 @@ Multi-user from day one: anyone can sign up and has their own private data. All 
 ## v1 features
 1. **Auth.** Sign up / log in with email. Google login only if the chosen stack makes it cheap.
 2. **Exercise library.** About 100 seeded common lifts, plus custom exercises per user.
-3. **Routines.** Create and edit a routine: ordered exercises with target sets, reps and rest.
-4. **Log a session.** Start from a routine or empty. Log weight × reps per set. Each set is prefilled with last session's values.
-5. **Rest timer.** Starts automatically after a set is logged.
+3. **Routines.** Create and edit a routine: ordered exercises with targets. Manual drag-to-reorder, plus smart insert (a new exercise goes after the last one for the same muscle).
+4. **Log a session.** Start from a routine or empty. Log sets for weighted, bodyweight and timed (cardio) exercises. Each set is prefilled with last session's values. A sanity warning catches obvious typos before saving.
+5. **Workout and rest clocks.** Both count up, never down. Workout clock runs from start to finish; rest clock restarts every time a set is logged.
 6. **History.** List of past sessions, plus history per exercise.
-7. **PRs.** Heaviest weight at a rep count, and estimated 1RM. Flagged when hit.
+7. **PRs.** Calculated from sets, never stored. Flagged when hit. Rules in `docs/domain.md`.
 
 Settings: kg/lb per user.
 
