@@ -1,6 +1,6 @@
 # Domain Model
 
-Status: Accepted · 2026-10-11
+Status: Accepted · 2026-10-11 · updated 2026-10-12 (weekly goal, calendar, streak)
 
 Use these exact words in code, DB tables, API and UI copy. One concept, one name.
 
@@ -8,6 +8,7 @@ Use these exact words in code, DB tables, API and UI copy. One concept, one name
 
 ```
 User
+ ├── WeeklyGoal (history of goal changes)
  ├── Exercise (custom, owned)          Exercise (global, seeded, owner = null)
  ├── Routine
  │    └── RoutineExercise  (ordered)  → Exercise
@@ -18,11 +19,12 @@ User
 
 | Entity | Key fields |
 |---|---|
-| **User** | email, `unit` (`kg` default, or `lb`) |
+| **User** | email, `unit` (`kg` default, or `lb`), `timezone` (IANA, from device) |
+| **WeeklyGoal** | `days_per_week` (1–7), `effective_from` (a week's Monday) |
 | **Exercise** | name, `tracking_type`, `muscle_group`, equipment, `owner_id` (null = global), `archived_at` |
 | **Routine** | name, `owner_id` |
 | **RoutineExercise** | exercise, `position`, target sets, target reps (min–max) or target duration, `group_id` (unused in v1) |
-| **Session** | `started_at`, `finished_at` (null = active), optional `routine_id`, notes |
+| **Session** | `started_at`, `finished_at` (null = active), `local_date` (device date at start), optional `routine_id`, notes |
 | **SessionExercise** | exercise, `position`, `group_id` (unused in v1) |
 | **Set** | `position`, `kind` (`warmup` / `working`), `weight_kg`, `reps`, `duration_s`, `distance_m`, `completed_at` |
 
@@ -72,6 +74,15 @@ Fields that don't apply to the type must be null. Enforced in the DB, not just t
 19. An exercise used in any session or routine is **archived, never deleted.** Archived exercises are hidden from pickers but stay in history.
 20. Users can't edit global exercises. They can create a custom copy.
 
+### Weekly goal, calendar and streak (ADR-0003: all derived)
+21. **Training day** = a `local_date` with at least one finished session that has at least one completed set.
+22. **Week** = Monday to Sunday, by `local_date`. `local_date` is captured from the device when the session starts, so travel or timezone changes never move a past workout to another day.
+23. **Goal met** = training days in the week ≥ the goal in effect that week.
+24. Changing the goal creates a new `WeeklyGoal` row from the current week on. Past weeks keep the goal they had, so history and streaks don't change retroactively. Default goal: 3 days.
+25. **Streak** = consecutive weeks with the goal met, counting back from the last finished week. The current week adds to the streak once its goal is met, and never breaks it while still in progress.
+26. **Calendar** shows training days per month; tapping a day opens its sessions.
+
 ## Not modelled in v1 (but not blocked)
 - Supersets / circuits: `group_id` exists, unused.
 - PRs for timed exercises, pause on the workout clock, trainers (ADR-0001).
+- Points, friends and location check-in: see `docs/backlog.md`.
