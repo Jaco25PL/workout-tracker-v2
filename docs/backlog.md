@@ -19,6 +19,16 @@ Design notes to resolve:
 - Skipping is sometimes right (pain, a busy machine). Keep the penalty small.
 - A target equal to the maximum possible feels like failure. Consider a target below the max.
 
+## v1.1 — Progression hint ("ready to go heavier")
+Goal: tell the user when they've earned a weight increase, without changing their numbers for them.
+
+- Rule idea (double progression): if **every working set** of an exercise last time hit the **top of the routine's rep range** (e.g. 3 × 12 on an 8–12 target), the next session flags it as ready to progress.
+- **Prefill stays the same** (rule 7 is unchanged: 28 kg stays 28 kg). The user decides.
+- UI: the prefilled weight is shown in a **success color with a small ↑ icon**; tapping it shows "Ready for 30 kg?" with a one-tap accept. Color is never the only signal (tokens rule); needs a new `--success` token with ≥ 4.5:1 contrast in all 4 themes.
+- Suggested step: +2.5 kg (or +5 lb) by default; per-exercise step to decide later (dumbbells often jump by 2 kg).
+- Derived, never stored (ADR-0003): computed from the last session's sets and the routine's targets.
+- Open questions: exercises with no rep range (empty workouts), bodyweight and timed exercises, warm-up sets excluded.
+
 ## v2 — Friends and healthy competition
 - Add friends, see their weekly progress, points and streaks. Compete to keep each other going.
 - **Changes ADR-0001** ("users never see each other's data"). Needs a new ADR: friendship model, what is shared (points/streaks only? sessions?), privacy controls.
