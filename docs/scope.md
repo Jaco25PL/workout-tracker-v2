@@ -18,7 +18,7 @@ Multi-user from day one: anyone can sign up and has their own private data. All 
 6. **History and consistency.** List of past sessions, history per exercise, a weekly goal (days per week), a calendar of training days and a streak of weeks with the goal met.
 7. **PRs.** Calculated from sets, never stored. Flagged when hit. Rules in `docs/domain.md`.
 
-Settings: kg/lb per user.
+Settings per user: kg/lb, weekly goal, appearance (system/light/dark), accent (blue/orange).
 
 ## Quality bars (must pass to ship)
 - Logging a set takes **≤ 2 taps** when prefilled values are right.

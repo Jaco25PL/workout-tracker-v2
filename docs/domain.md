@@ -1,6 +1,6 @@
 # Domain Model
 
-Status: Accepted · 2026-10-11 · updated 2026-10-13 (flexible days, routine rotation)
+Status: Accepted · 2026-10-11 · updated 2026-10-13 (flexible days, routine rotation, theme settings)
 
 Use these exact words in code, DB tables, API and UI copy. One concept, one name.
 
@@ -19,7 +19,7 @@ User
 
 | Entity | Key fields |
 |---|---|
-| **User** | email, `unit` (`kg` default, or `lb`), `timezone` (IANA, from device) |
+| **User** | email, `unit` (`kg` default, or `lb`), `timezone` (IANA, from device), `appearance` (`system` default, `light`, `dark`), `accent` (`blue` default, `orange`) |
 | **WeeklyGoal** | `days_per_week` (1–7), `effective_from` (a week's Monday) |
 | **Exercise** | name, `tracking_type`, `muscle_group`, equipment, `owner_id` (null = global), `archived_at` |
 | **Routine** | name, `owner_id`, `rotation_position` |

@@ -17,7 +17,7 @@ During an active workout, the workout screen takes over. A floating "Back to wor
 3. **Finish summary**
 4. **History** — calendar + session list, session detail, exercise history.
 5. **Routine editor**
-6. **Settings** — unit, weekly goal, account.
+6. **Settings** — unit, weekly goal, appearance, accent, account.
 Plus: **Login** (email code), **Exercise picker** (sheet).
 
 ---
@@ -82,7 +82,7 @@ Also: **Discard workout** (in the Workout header menu) → confirm → deleted (
 - Delete routine → confirm. Past sessions keep their data (ADR-0002).
 
 ## F9. Settings
-Unit (kg / lb) · weekly goal (rule 24) · theme follows the system · email · log out · delete account.
+Unit (kg / lb) · weekly goal (rule 24) · **appearance** (System / Light / Dark, default System) · **accent** (Blue / Orange, default Blue) · email · log out · delete account. Appearance and accent apply instantly and sync to the user's other devices (`docs/design/tokens.md`).
 
 ## Offline / sync states (ADR-0008)
 - No signal: everything in F3–F6 works. A small "Offline · 4 sets waiting" pill in the header.
