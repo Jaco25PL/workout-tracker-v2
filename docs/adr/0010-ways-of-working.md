@@ -16,7 +16,7 @@ Claude Code writes most of the code; one human reviews it. Methods and patterns 
 
 ## Options rejected
 - **BDD with Gherkin:** the only readers are the author and Claude Code. Plain examples give the same precision without tooling.
-- **Full DDD (aggregates, domain events, bounded contexts):** too much ceremony for one bounded context. We keep the shared vocabulary.
+- **Full tactical DDD (domain events, bounded contexts, rich entity classes, factories):** too much ceremony for one small domain. We use **DDD-lite**: shared vocabulary (`domain.md`), an isolated domain layer (`packages/domain`), and aggregates (e.g. `Session` owns its exercises and sets; one repository per aggregate).
 - **EDD (eval-driven):** for AI features. The app has none; revisit if one is added.
 - **Full clean / hexagonal architecture with ports everywhere:** lots of boilerplate for Claude to generate and for a solo dev to review. Adapters only where a provider may change.
 - **Everything in CLAUDE.md:** loaded every turn, dilutes attention, and can't enforce anything.

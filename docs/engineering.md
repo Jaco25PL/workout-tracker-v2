@@ -30,7 +30,7 @@ Out of scope: anything not listed.
 - **Not required:** UI components and plain glue code.
 - Test names say the behaviour: `logSet: tie with best is not a PR`.
 
-The shared vocabulary in `domain.md` is the only DDD we use: same words in docs, code, DB and UI.
+**DDD-lite:** shared vocabulary from `domain.md` (same words in docs, code, DB and UI), an isolated domain layer, and aggregates (`Session` owns its exercises and sets; changes go through it). No domain events, bounded contexts or rich entity classes.
 
 ## 2. Architecture
 **Modular monolith, grouped by feature, functional core + imperative shell.**
